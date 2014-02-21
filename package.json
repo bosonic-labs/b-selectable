@@ -1,0 +1,15 @@
+{
+  "name": "b-selectable",
+  "version": "0.1.0",
+  "description": "b-selectable ========",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "bosonic-test-tools": "*"
+  },
+  "dependencies": {
+    "bosonic": "*"
+  }
+}
