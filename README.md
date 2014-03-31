@@ -1,26 +1,22 @@
 # &lt;b-selectable&gt;
 
-## Overview
+A [Bosonic](http://bosonic.github.io) element which allows single (for now) selection of an item in a list.
 
-This Web Component allows single (for now) selection of an item in a list.
+[Check the demo](http://bosonic.github.io/demos.html).
+
+## Install
+
+This element is available as a npm package, see the [Bosonic documentation](http://bosonic.github.io/documentation.html) for Bosonic transpiler usage.
+
+```sh
+$ npm install --save b-collapsible
+```
+
+Otherwise, you can download and include in your HTML file the builded CSS & JS files, alongside with Bosonic runtime and polyfills, as described in the [Getting Started](http://bosonic.github.io/getting-started.html) guide.
 
 ## Usage
 
-```html
-<b-selectable>
-    <div>Item 1</div>
-    <div>Item 2</div>
-    <div>Item 3</div>
-</b-selectable>
-```
-
-Will display an unstyled list of selectable items.
-
-## Attributes
-
-### selected
-
-The attribute `selected` indicates which item element is being selected, and can also be used to select an item programmatically.
+The `selected` attribute indicates which item element is being selected, and can also be used to select an item programmatically.
 
 ```html
 <b-selectable selected="0">
@@ -29,10 +25,7 @@ The attribute `selected` indicates which item element is being selected, and can
     <div>Item 3</div>
 </b-selectable>
 ```
-
-### target
-
-The attribute `target` defines a selector used to query nodes to be used for selectable items.
+The `target` attribute defines a selector used to query nodes to be used for selectable items.
 
 ```html
 <b-selectable target="li">
@@ -44,19 +37,11 @@ The attribute `target` defines a selector used to query nodes to be used for sel
 </b-selectable>
 ```
 
-## Events
+Whenever the selected item changes, a `b-selected` event will be fired. The user can use the keyboard to select an item: Up/Down.
 
-### b-select
+If the user clicks/taps on an item, it will be selected AND then activated (a `b-activate` event will be fired just after the `b-selected`). If using keyboard, type ENTER to activate the selected item.
 
-Whenever the selected item changes, a `b-select` event will be fired. The user can use the keyboard to select an item: Up/Down.
-
-### b-activate
-
-If the user clicks/taps on an item, it will be selected AND then activated (a `b-activate` event will be fired just after the `b-select`). If using keyboard, type ENTER to activate the selected item.
-
-## Styling
-
-`<b-selectable>` is not styled.  You need to style the `.b-selectable-selected` CSS class to style the selected element.
+b-selectable is not styled.  You need to style the `b-selectable-selected` CSS class to style the selected element.
 
 ```css
 .b-selectable-selected {

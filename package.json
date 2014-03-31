@@ -1,11 +1,17 @@
 {
   "name": "b-selectable",
-  "version": "0.1.1",
-  "description": "b-selectable ========",
+  "version": "0.1.2",
+  "description": "A Bosonic element which allows selection of an item in a list.",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bosonic/b-selectable.git"
+  },
+  "author": "Raphaël Rougeron <goldoraf@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "bosonic-test-tools": "*",
     "grunt-bosonic": "*"
