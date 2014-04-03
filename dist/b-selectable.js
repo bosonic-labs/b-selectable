@@ -17,6 +17,9 @@
                 enumerable: true,
                 value: function () {
                     this.tabIndex = -1;
+                    if (this.hasAttribute('selected')) {
+                        this.selectedChanged(null, this.getAttribute('selected'));
+                    }
                     this.addEventListener('click', this.clickHandler.bind(this), false);
                     this.addEventListener('keydown', this.keydownHandler.bind(this), false);
                 }
@@ -34,8 +37,10 @@
                     this.dispatchEvent(new CustomEvent('b-select', { detail: { item: newValue } }));
                     if (oldValue !== null) {
                         this.getItem(oldValue).classList.remove('b-selectable-selected');
+                        this.getItem(oldValue).removeAttribute('active');
                     }
                     this.getItem(newValue).classList.add('b-selectable-selected');
+                    this.getItem(newValue).setAttribute('active', '');
                 }
             },
             clickHandler: {
