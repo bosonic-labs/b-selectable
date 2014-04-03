@@ -12,7 +12,7 @@ This element is available as a npm package, see the [Bosonic documentation](http
 $ npm install --save b-collapsible
 ```
 
-Otherwise, you can download and include in your HTML file the builded CSS & JS files, alongside with Bosonic runtime and polyfills, as described in the [Getting Started](http://bosonic.github.io/getting-started.html) guide.
+Otherwise, you can download and include in your HTML file the builded CSS & JS files, alongside with Bosonic polyfills, as described in the [Getting Started](http://bosonic.github.io/getting-started.html) guide.
 
 ## Usage
 

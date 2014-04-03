@@ -10,6 +10,7 @@ function createSelectableList() {
 }
 
 describe('b-selectable', function() {
+
     describe('when setting selected attribute', function() {
         it('should add a class to the selected item', function() {
             var selectable = createSelectableList();

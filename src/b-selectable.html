@@ -16,14 +16,14 @@
                 return Number(this.getAttribute('selected'));
             },
 
-            readyCallback: function() {
+            createdCallback: function() {
                 this.tabIndex = -1;
                 this.addEventListener('click', this.clickHandler.bind(this), false);
                 this.addEventListener('keydown', this.keydownHandler.bind(this), false);
             },
 
-            attributeChanged: function(name, oldValue, newValue) {
-                if (name === 'selected') this.selectedChanged(oldValue, newValue);
+            attributeChangedCallback: function(name, oldValue, newValue) {
+                if (name === 'selected') this.selectedChanged(oldValue, this.getAttribute(name));
             },
 
             selectedChanged: function(oldValue, newValue) {

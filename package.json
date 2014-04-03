@@ -1,6 +1,6 @@
 {
   "name": "b-selectable",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A Bosonic element which allows selection of an item in a list.",
   "main": "Gruntfile.js",
   "scripts": {
@@ -12,11 +12,14 @@
   },
   "author": "Raphaël Rougeron <goldoraf@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bosonic/b-selectable/issues"
+  },
   "devDependencies": {
     "bosonic-test-tools": "*",
-    "grunt-bosonic": "*"
+    "grunt-bosonic": ">=0.4.0"
   },
   "dependencies": {
-    "bosonic": "*"
+    "bosonic": ">=0.4.0"
   }
 }
