@@ -35,10 +35,8 @@
                 );
                 if (oldValue !== null) {
                     this.getItem(oldValue).classList.remove('b-selectable-selected');
-                    this.getItem(oldValue).removeAttribute('active');
                 }
                 this.getItem(newValue).classList.add('b-selectable-selected');
-                this.getItem(newValue).setAttribute('active', '');
             },
 
             clickHandler: function(e) {
