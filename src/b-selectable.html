@@ -14,25 +14,26 @@
         ({
             elementRole: 'listbox',
             elementLabel: 'Selectable list',
+            itemsRole: 'option',
 
             get selectedItemIndex() {
                 return Number(this.getAttribute('selected'));
             },
 
             createdCallback: function() {
-                this.tabIndex = 0;
-                this.setAttribute('role', this.elementRole);
-                this.setAttribute('aria-label', this.elementLabel);
+                this.handleAria();
                 if (this.hasAttribute('selected')) {
                     this.selectedChanged(null, this.getAttribute('selected'));
                 }
-                this.addItemRoles();
                 this.addListeners();
             },
 
-            addItemRoles: function() {
+            handleAria: function() {
+                this.tabIndex = 0;
+                this.setAttribute('role', this.elementRole);
+                this.setAttribute('aria-label', this.elementLabel);
                 this.getItems().forEach(function(item) {
-                    item.setAttribute('role', 'option');
+                    item.setAttribute('role', this.itemsRole);
                 });
             },
 

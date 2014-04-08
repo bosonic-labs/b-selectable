@@ -9,6 +9,7 @@
     var BSelectablePrototype = Object.create(HTMLElement.prototype, {
             elementRole: { value: 'listbox' },
             elementLabel: { value: 'Selectable list' },
+            itemsRole: { value: 'option' },
             selectedItemIndex: {
                 enumerable: true,
                 get: function () {
@@ -18,21 +19,21 @@
             createdCallback: {
                 enumerable: true,
                 value: function () {
-                    this.tabIndex = 0;
-                    this.setAttribute('role', this.elementRole);
-                    this.setAttribute('aria-label', this.elementLabel);
+                    this.handleAria();
                     if (this.hasAttribute('selected')) {
                         this.selectedChanged(null, this.getAttribute('selected'));
                     }
-                    this.addItemRoles();
                     this.addListeners();
                 }
             },
-            addItemRoles: {
+            handleAria: {
                 enumerable: true,
                 value: function () {
+                    this.tabIndex = 0;
+                    this.setAttribute('role', this.elementRole);
+                    this.setAttribute('aria-label', this.elementLabel);
                     this.getItems().forEach(function (item) {
-                        item.setAttribute('role', 'option');
+                        item.setAttribute('role', this.itemsRole);
                     });
                 }
             },
