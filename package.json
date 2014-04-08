@@ -1,6 +1,6 @@
 {
   "name": "b-selectable",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A Bosonic element which allows selection of an item in a list.",
   "main": "Gruntfile.js",
   "scripts": {

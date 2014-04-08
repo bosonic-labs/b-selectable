@@ -34,7 +34,7 @@
                 this.setAttribute('aria-label', this.elementLabel);
                 this.getItems().forEach(function(item) {
                     item.setAttribute('role', this.itemsRole);
-                });
+                }, this);
             },
 
             addListeners: function() {
