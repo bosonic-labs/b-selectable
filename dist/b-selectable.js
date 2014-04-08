@@ -7,6 +7,8 @@
             DOWN: 40
         };
     var BSelectablePrototype = Object.create(HTMLElement.prototype, {
+            elementRole: { value: 'listbox' },
+            elementLabel: { value: 'Selectable list' },
             selectedItemIndex: {
                 enumerable: true,
                 get: function () {
@@ -16,12 +18,30 @@
             createdCallback: {
                 enumerable: true,
                 value: function () {
-                    this.tabIndex = -1;
+                    this.tabIndex = 0;
+                    this.setAttribute('role', this.elementRole);
+                    this.setAttribute('aria-label', this.elementLabel);
                     if (this.hasAttribute('selected')) {
                         this.selectedChanged(null, this.getAttribute('selected'));
                     }
+                    this.addItemRoles();
+                    this.addListeners();
+                }
+            },
+            addItemRoles: {
+                enumerable: true,
+                value: function () {
+                    this.getItems().forEach(function (item) {
+                        item.setAttribute('role', 'option');
+                    });
+                }
+            },
+            addListeners: {
+                enumerable: true,
+                value: function () {
                     this.addEventListener('click', this.clickHandler.bind(this), false);
                     this.addEventListener('keydown', this.keydownHandler.bind(this), false);
+                    this.addEventListener('focus', this.focusHandler.bind(this), false);
                 }
             },
             attributeChangedCallback: {
@@ -37,10 +57,18 @@
                     this.dispatchEvent(new CustomEvent('b-select', { detail: { item: newValue } }));
                     if (oldValue !== null) {
                         this.getItem(oldValue).classList.remove('b-selectable-selected');
-                        this.getItem(oldValue).removeAttribute('active');
+                        this.getItem(oldValue).removeAttribute('aria-selected');
                     }
                     this.getItem(newValue).classList.add('b-selectable-selected');
-                    this.getItem(newValue).setAttribute('active', '');
+                    this.getItem(newValue).setAttribute('aria-selected', 'true');
+                }
+            },
+            focusHandler: {
+                enumerable: true,
+                value: function (e) {
+                    if (!this.hasAttribute('selected')) {
+                        this.selectFirst();
+                    }
                 }
             },
             clickHandler: {
@@ -48,7 +76,7 @@
                 value: function (e) {
                     var itemIndex = this.getItems().indexOf(e.target);
                     if (itemIndex !== -1) {
-                        this.setAttribute('selected', itemIndex);
+                        this.select(itemIndex);
                         this.activate();
                     }
                 }
@@ -80,11 +108,25 @@
                     this.dispatchEvent(new CustomEvent('b-activate', { detail: { item: this.getAttribute('selected') } }));
                 }
             },
+            select: {
+                enumerable: true,
+                value: function (index) {
+                    this.setAttribute('selected', index);
+                }
+            },
+            selectFirst: {
+                enumerable: true,
+                value: function () {
+                    if (this.getItemCount() > 0) {
+                        this.select(0);
+                    }
+                }
+            },
             selectNextItem: {
                 enumerable: true,
                 value: function () {
                     if (this.selectedItemIndex < this.getItemCount() - 1) {
-                        this.setAttribute('selected', this.selectedItemIndex + 1);
+                        this.select(this.selectedItemIndex + 1);
                     }
                 }
             },
@@ -92,7 +134,7 @@
                 enumerable: true,
                 value: function () {
                     if (this.selectedItemIndex > 0) {
-                        this.setAttribute('selected', this.selectedItemIndex - 1);
+                        this.select(this.selectedItemIndex - 1);
                     }
                 }
             },

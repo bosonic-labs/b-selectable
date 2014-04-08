@@ -45,10 +45,24 @@ describe('b-selectable', function() {
         });
     });
 
+    describe('when focusing', function() {
+        it('should select the first item', function() {
+            var selectable = createSelectableList();
+            selectable.focus();
+            expect(selectable.getAttribute('selected')).to.equal('0');
+        });
+
+        it('should do nothing if an item is already selected', function() {
+            var selectable = createSelectableList();
+            selectable.setAttribute('selected', 2);
+            selectable.focus();
+            expect(selectable.getAttribute('selected')).to.equal('2');
+        });
+    });
+
     describe('when pressing down', function() {
         it('should select the next item', function() {
             var selectable = createSelectableList();
-            selectable.setAttribute('selected', 0);
             selectable.focus();
             kb.hit(kb.DOWN);
             expect(selectable.getAttribute('selected')).to.equal('1');
