@@ -56,12 +56,14 @@
                 enumerable: true,
                 value: function (oldValue, newValue) {
                     this.dispatchEvent(new CustomEvent('b-select', { detail: { item: newValue } }));
-                    if (oldValue !== null) {
+                    if (!isNaN(parseInt(oldValue))) {
                         this.getItem(oldValue).classList.remove('b-selectable-selected');
                         this.getItem(oldValue).removeAttribute('aria-selected');
                     }
-                    this.getItem(newValue).classList.add('b-selectable-selected');
-                    this.getItem(newValue).setAttribute('aria-selected', 'true');
+                    if (!isNaN(parseInt(newValue))) {
+                        this.getItem(newValue).classList.add('b-selectable-selected');
+                        this.getItem(newValue).setAttribute('aria-selected', 'true');
+                    }
                 }
             },
             focusHandler: {
@@ -112,6 +114,7 @@
             select: {
                 enumerable: true,
                 value: function (index) {
+                    this.setAttribute('selected', '');
                     this.setAttribute('selected', index);
                 }
             },
