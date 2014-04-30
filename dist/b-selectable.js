@@ -49,20 +49,21 @@
                 enumerable: true,
                 value: function (name, oldValue, newValue) {
                     if (name === 'selected')
-                        this.selectedChanged(oldValue, this.getAttribute(name));
+                        this.selectedChanged(parseInt(oldValue), parseInt(this.getAttribute(name)));
                 }
             },
             selectedChanged: {
                 enumerable: true,
                 value: function (oldValue, newValue) {
+                    var oldSelectedItem, newSelectedItem;
                     this.dispatchEvent(new CustomEvent('b-select', { detail: { item: newValue } }));
-                    if (!isNaN(parseInt(oldValue))) {
-                        this.getItem(oldValue).classList.remove('b-selectable-selected');
-                        this.getItem(oldValue).removeAttribute('aria-selected');
+                    if (!isNaN(oldValue) && (oldSelectedItem = this.getItem(oldValue)) !== null) {
+                        oldSelectedItem.classList.remove('b-selectable-selected');
+                        oldSelectedItem.removeAttribute('aria-selected');
                     }
-                    if (!isNaN(parseInt(newValue))) {
-                        this.getItem(newValue).classList.add('b-selectable-selected');
-                        this.getItem(newValue).setAttribute('aria-selected', 'true');
+                    if (!isNaN(newValue) && (newSelectedItem = this.getItem(newValue)) !== null) {
+                        newSelectedItem.classList.add('b-selectable-selected');
+                        newSelectedItem.setAttribute('aria-selected', 'true');
                     }
                 }
             },
