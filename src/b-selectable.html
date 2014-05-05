@@ -97,13 +97,18 @@
 
             activate: function() {
                 this.dispatchEvent(
-                    new CustomEvent('b-activate', { detail: { item: this.getAttribute('selected') } })
+                    new CustomEvent('b-activate', { detail: { item: parseInt(this.getAttribute('selected')) } })
                 );
             },
 
             select: function(index) {
-                this.setAttribute('selected', '');
                 this.setAttribute('selected', index);
+            },
+
+            unselect: function() {
+                if (this.hasAttribute('selected')) {
+                    this.removeAttribute('selected');
+                }
             },
 
             selectFirst: function() {

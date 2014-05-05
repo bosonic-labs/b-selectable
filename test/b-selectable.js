@@ -21,7 +21,7 @@ describe('b-selectable', function() {
         it('should dispatch a b-select event', function(done) {
             var selectable = createSelectableList();
             selectable.addEventListener('b-select', function(e) {
-                expect(e.detail.item).to.equal('1');
+                expect(e.detail.item).to.equal(1);
                 done();
             });
             selectable.setAttribute('selected', 1);
@@ -46,10 +46,14 @@ describe('b-selectable', function() {
     });
 
     describe('when focusing', function() {
-        it('should select the first item', function() {
+        it('should select the first item', function(done) {
             var selectable = createSelectableList();
             selectable.focus();
-            expect(selectable.getAttribute('selected')).to.equal('0');
+            setTimeout(function() {
+                expect(selectable.getAttribute('selected')).to.equal('0');
+                done();
+            }, 100);
+            
         });
 
         it('should do nothing if an item is already selected', function() {

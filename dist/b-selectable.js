@@ -109,14 +109,21 @@
             activate: {
                 enumerable: true,
                 value: function () {
-                    this.dispatchEvent(new CustomEvent('b-activate', { detail: { item: this.getAttribute('selected') } }));
+                    this.dispatchEvent(new CustomEvent('b-activate', { detail: { item: parseInt(this.getAttribute('selected')) } }));
                 }
             },
             select: {
                 enumerable: true,
                 value: function (index) {
-                    this.setAttribute('selected', '');
                     this.setAttribute('selected', index);
+                }
+            },
+            unselect: {
+                enumerable: true,
+                value: function () {
+                    if (this.hasAttribute('selected')) {
+                        this.removeAttribute('selected');
+                    }
                 }
             },
             selectFirst: {
