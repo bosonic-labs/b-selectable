@@ -17,7 +17,7 @@
             itemsRole: 'option',
 
             get selectedItemIndex() {
-                return Number(this.getAttribute('selected'));
+                return this.hasAttribute('selected') ? Number(this.getAttribute('selected')) : null;
             },
 
             createdCallback: function() {
@@ -117,13 +117,27 @@
                 }
             },
 
+            selectLast: function() {
+                if (this.getItemCount() > 0) {
+                    this.select(this.getItemCount() - 1);
+                }
+            },
+
             selectNextItem: function() {
+                if (this.selectedItemIndex === null) {
+                    this.selectFirst();
+                    return;
+                }
                 if (this.selectedItemIndex < this.getItemCount() - 1) {
                     this.select(this.selectedItemIndex + 1);
                 }
             },
 
             selectPreviousItem: function() {
+                if (this.selectedItemIndex === null) {
+                    this.selectLast();
+                    return;
+                }
                 if (this.selectedItemIndex > 0) {
                     this.select(this.selectedItemIndex - 1);
                 }

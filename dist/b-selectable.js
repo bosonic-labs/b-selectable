@@ -13,7 +13,7 @@
             selectedItemIndex: {
                 enumerable: true,
                 get: function () {
-                    return Number(this.getAttribute('selected'));
+                    return this.hasAttribute('selected') ? Number(this.getAttribute('selected')) : null;
                 }
             },
             createdCallback: {
@@ -134,9 +134,21 @@
                     }
                 }
             },
+            selectLast: {
+                enumerable: true,
+                value: function () {
+                    if (this.getItemCount() > 0) {
+                        this.select(this.getItemCount() - 1);
+                    }
+                }
+            },
             selectNextItem: {
                 enumerable: true,
                 value: function () {
+                    if (this.selectedItemIndex === null) {
+                        this.selectFirst();
+                        return;
+                    }
                     if (this.selectedItemIndex < this.getItemCount() - 1) {
                         this.select(this.selectedItemIndex + 1);
                     }
@@ -145,6 +157,10 @@
             selectPreviousItem: {
                 enumerable: true,
                 value: function () {
+                    if (this.selectedItemIndex === null) {
+                        this.selectLast();
+                        return;
+                    }
                     if (this.selectedItemIndex > 0) {
                         this.select(this.selectedItemIndex - 1);
                     }
