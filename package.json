@@ -1,7 +1,7 @@
 {
   "name": "b-selectable",
-  "version": "0.2.8",
-  "description": "A Bosonic element which allows selection of an item in a list.",
+  "version": "0.2.9",
+  "description": "b-selectable has been deprecated. Use bosonic-core-elements instead.",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,9 +17,9 @@
   },
   "devDependencies": {
     "bosonic-test-tools": "*",
-    "grunt-bosonic": ">=0.4.0"
+    "grunt-bosonic": "~0.4.0"
   },
   "dependencies": {
-    "bosonic": ">=0.4.0"
+    "bosonic": "~0.4.0"
   }
 }
